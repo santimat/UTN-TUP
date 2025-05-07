@@ -1,0 +1,120 @@
+1 a) La diferencia es que uno es el paso a paso de como cumplir un fin y el otro es el resultado de una serie de instrucciones por medio de codigo de programacion
+
+b) la metodología top-down se basa en "divide y venceras" la idea es dividir los problemas mas pequeños y más "simples" de resolver, para esto hay que tener en cuenta que cada problema se pueda resolver independientemente y que al combinarse todos estos se resuelva el problema original
+
+
+
+2 a) Los operadores relaciones son aquellos que sirven para comparar valores y retornan true o falso (en caso de C al no haber un booleano nativo 1 o 0). Un ejemplo puede ser 2 > 3, dos mayor que tres, este retornaría true, luego podríamos comparar si "a" != "b", a diferente de b, esto retornaría true.
+
+Luego los operadores logicos son aquellos que permiten combinar varias expresiones en una misma condicion. Esta el operador AND (&&) que sirve para comprobar que dos o más condiciones se cumplan, por ejemplo 1 + 1 == 2 && 2+2 == 4, para que retorne true ambas validaciones deben ser verdaderos. Tambien está el operador OR ( || ), este nos sirve para preguntar si alguna de las expresiones es verdaderas, por ejemplo edad > 18 || permiso == 1, es decir si edad es mayor de 18 O tiene permiso retorna true. Y por ultimo está el operador NOT ( ! ) este lo que hace es negar el resultado de una expresion, por ejemplo !(edad < 18), estamos diciendo que si la edad no es menor a 18.
+
+b) cuando pasamos una variable por valor simplemente estamos pasando su contenido, es decir que cualquier operacion que hagamos dentro de la funcion no modificará a la variable original, en cambio si la pasamos por referencia estamos enviando su direccion de memoria por lo tanto en este caso si podríamos modificar el valor de la variable original.
+
+
+
+3) - importamos la librería stantard inaput output para utilizar las funciones basicas de C
+
+- creamos la funcion main la cual se ejecutará automaticamente al compilar el codigo
+
+- dentro de main creamos un entero llamado x que valdrá 5
+
+- luego creamos un while que se ejecutará mientras que x sea mayor a 0
+
+- hacemos un condicional para preguntar que si el valor de x modulo 2 es decir su resto, es igual a 0, basicamente preguntar si el numero es par, vamos a imprimir x es par, caso contrario imprimimos x es impar
+
+- disminuimos x en 1 con el decremento --
+
+
+
+4) - incluimos la librería standar input output y la librería string.h para acceder a los metodos de cadenas
+
+- creamos funcion main (funcion principal de c que se ejecuta automaticamente cuando compilamos)
+
+- creamos una cadena de caracteres con la palabra "hola"
+
+- hacemos un for que se va a ejecutar si i es menor que el largo de la palabra
+
+- imprimimos caracter por caracter de la palabra hola
+
+
+
+5) #include <stdio.h>
+
+
+
+int main()
+
+{
+
+        char cadena[20];
+
+        printf("Ingrese una cadena de caracteres sin espacios\n");
+
+        scanf("%s", cadena);
+
+        int a = 0, e = 0, i = 0, o = 0, u = 0;
+
+        int j = 0;
+
+        while (cadena[j] != '\0')
+
+   
+    {
+
+                if (cadena[j] >= 65 && cadena[j] <= 90)
+
+       
+        {
+
+                        cadena[j] = cadena[j] + 32;
+
+                   
+        }
+
+                switch (cadena[j])
+
+       
+        {
+
+                case 97:
+
+                        a++;
+
+                        break;
+
+                case 101:
+
+                        e++;
+
+                        break;
+
+                case 105:
+
+                        i++;
+
+                        break;
+
+                case 111:
+
+                        o++;
+
+                        break;
+
+                case 117:
+
+                        u++;
+
+                        break;
+
+                   
+        }
+
+                j++;
+
+           
+    }
+
+        printf("Vocales: a: %d, e: %d, i: %d, o: %d, u: %d", a, e, i, o, u);
+
+        return 0;
+}
