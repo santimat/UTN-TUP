@@ -16,14 +16,17 @@ void calcularEstadisticas(int size, int *nums, int *suma, float *promedio, int *
     for (int i = 0; i < size; i++)
     {
         (*suma) += *(nums + i);
+
         if (*(nums + i) > *mayor)
         {
             *mayor = *(nums + i);
         }
+
         if (*(nums + i) < *menor)
         {
             *menor = *(nums + i);
         }
+
         if (*(nums + i) % 2 == 0)
         {
             (*pares)++;
