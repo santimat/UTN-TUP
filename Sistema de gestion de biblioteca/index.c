@@ -153,6 +153,7 @@ void updateBook()
 
 void searchBook()
 {
+    printf("Ingrese el ISBN, del libro que desea buscar\n");
 }
 
 void showMenu(Book b[], int *size)
