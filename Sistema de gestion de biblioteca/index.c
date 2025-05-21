@@ -187,7 +187,6 @@ void updateBook(Book b[], int size)
             printf("Editorial modificado\n");
             break;
         }
-
     } while (option != 4);
 }
 
