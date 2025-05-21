@@ -7,7 +7,7 @@ typedef struct
     char isbn[10];
     char author[50];
     char editorial[50];
-    int belowed; // 0 = not belowed, 1 = belowed
+    int borrowed; // 0 = not borrowed, 1 = borrowed
 } Book;
 
 void sortBooks(Book b[], int *size)
@@ -31,7 +31,7 @@ int binarySearch(Book b[], int size, char target[])
     int left = 0, right = size - 1;
     while (left <= right)
     {
-        int mid = left + (right - left);
+        int mid = left + (right - left) / 2;
 
         if (strcmp(b[mid].isbn, target) == 0)
         {
@@ -57,19 +57,19 @@ void initLibrary(Book b[], int *size)
     strcpy(b[0].isbn, "1234");
     strcpy(b[0].author, "Brian W. Kernighan");
     strcpy(b[0].editorial, "Prentice Hall");
-    b[0].belowed = 0;
+    b[0].borrowed = 0;
 
     strcpy(b[1].title, "Clean Code");
     strcpy(b[1].isbn, "2456");
     strcpy(b[1].author, "Robert C. Martin");
     strcpy(b[1].editorial, "Prentice Hall");
-    b[1].belowed = 1;
+    b[1].borrowed = 1;
 
     strcpy(b[2].title, "The Pragmatic Programmer");
     strcpy(b[2].isbn, "1111");
     strcpy(b[2].author, "Andrew Hunt");
     strcpy(b[2].editorial, "Addison-Wesley");
-    b[2].belowed = 0;
+    b[2].borrowed = 0;
 
     *size = 3;
 }
@@ -92,53 +92,54 @@ void createBook(Book b[], int *size)
     printf("Ingrese el estado del libro\n");
     printf("1. Prestado\n");
     printf("2. Disponible\n");
-    scanf("%d", &newBook.belowed);
+    scanf("%d", &newBook.borrowed);
 
     b[*size] = newBook;
     (*size)++;
-    sortBooks(b, size);
 }
 
 void showBooks(Book b[], int size)
 {
+    sortBooks(b, &size);
     for (int i = 0; i < size; i++)
     {
+        printf("══════════════════════════════════════\n");
         printf("ISBN: %s\n", b[i].isbn);
         printf("Titulo: %s\n", b[i].title);
         printf("Autor: %s\n", b[i].author);
         printf("Editorial: %s\n", b[i].editorial);
-        if (b[i].belowed == 1)
-        {
-            printf("Libro prestado\n");
-        }
-        else
-        {
-            printf("Libro disponible\n");
-        }
-        printf("===========================\n");
+        printf("Estado: %s\n", b[i].borrowed ? "Prestado" : "Disponible"); // <- operador ternario
+        printf("══════════════════════════════════════\n");
     }
 }
 
 void lendBook(Book b[], int size)
 {
-    sortBooks(b, &size);
-    char target[4];
-    int option = 0;
     showBooks(b, size);
-    printf("Ingrese el ISBN del libro que desea prestar:\n");
+
+    char target[5];
+    printf("Ingrese el ISBN del libro que desea modificar su estado:\n");
     scanf("%s", target);
-    printf("Ingrese 1 para prestar, 2 para marcar como disponible\n");
+
+    int option = 0;
+    printf("╔══════════════════════════════════════╗\n");
+    printf("║          Modificar estado            ║\n");
+    printf("║══════════════════════════════════════║\n");
+    printf("║    1. Prestar libro                  ║\n");
+    printf("║    2. Marcar como disponible         ║\n");
+    printf("╚══════════════════════════════════════╝\n");
     scanf("%d", &option);
+
     int bookIdx = binarySearch(b, size, target);
 
-    if (b[bookIdx].belowed == 0 && option == 1)
+    if (b[bookIdx].borrowed == 0 && option == 1)
     {
-        b[bookIdx].belowed = 1;
+        b[bookIdx].borrowed = 1;
         printf("Libro prestado!\n");
     }
-    else if (b[bookIdx].belowed == 1 && option == 2)
+    else if (b[bookIdx].borrowed == 1 && option == 2)
     {
-        b[bookIdx].belowed = 0;
+        b[bookIdx].borrowed = 0;
         printf("Marcado como disponible!\n");
     }
     else
@@ -147,13 +148,69 @@ void lendBook(Book b[], int size)
     }
 }
 
-void updateBook()
+void updateBook(Book b[], int size)
 {
+    showBooks(b, size);
+
+    char target[5];
+    printf("Ingrese el ISBN del libro que desea modificar\n");
+    scanf("%s", target);
+    int bookIdx = binarySearch(b, size, target);
+
+    int option = 0;
+    do
+    {
+        printf("╔══════════════════════════════════════╗\n");
+        printf("║          Modificar libro             ║\n");
+        printf("║══════════════════════════════════════║\n");
+        printf("║       1. Titulo                      ║\n");
+        printf("║       2. Autor                       ║\n");
+        printf("║       3. Editorial                   ║\n");
+        printf("║       4. Salir                       ║\n");
+        printf("╚══════════════════════════════════════╝\n");
+        scanf("%d", &option);
+        switch (option)
+        {
+        case 1:
+            printf("Ingrese el nuevo titulo\n");
+            scanf(" %[^\n]", b[bookIdx].title);
+            printf("Titulo modificado\n");
+            break;
+        case 2:
+            printf("Ingrese el nuevo autor\n");
+            scanf(" %[^\n]", b[bookIdx].author);
+            printf("Autor modificado\n");
+            break;
+        case 3:
+            printf("Ingrese la nueva editorial\n");
+            scanf(" %[^\n]", b[bookIdx].editorial);
+            printf("Editorial modificado\n");
+            break;
+        }
+
+    } while (option != 4);
 }
 
-void searchBook()
+void searchBook(Book b[], int size)
 {
     printf("Ingrese el ISBN, del libro que desea buscar\n");
+    char target[10];
+    scanf("%s", target);
+
+    int bookIdx = binarySearch(b, size, target);
+    // -1 si no se encuentra
+    if (bookIdx != -1)
+    {
+        printf("ISBN: %s\n", b[bookIdx].isbn);
+        printf("Titulo: %s\n", b[bookIdx].title);
+        printf("Autor: %s\n", b[bookIdx].author);
+        printf("Editorial: %s\n", b[bookIdx].editorial);
+        printf("Estado: %s\n", b[bookIdx].borrowed ? "Prestado" : "Disponible");
+    }
+    else
+    {
+        printf("Libro no encontrado\n");
+    }
 }
 
 void showMenu(Book b[], int *size)
@@ -161,13 +218,16 @@ void showMenu(Book b[], int *size)
     int option = 0;
     do
     {
-        printf("Seleccione una opcion\n");
-        printf("1. Crear un libro\n");
-        printf("2. Listar todos los libros\n");
-        printf("3. Prestar un libro\n");
-        printf("4. Modificar un libro\n");
-        printf("5. Buscar un libro por isbn\n");
-        printf("6. Salir\n");
+        printf("╔══════════════════════════════════════╗\n");
+        printf("║         BIBLIOTECA DE LIBROS         ║\n");
+        printf("║══════════════════════════════════════║\n");
+        printf("║    1. Agregar un libro               ║\n");
+        printf("║    2. Mostrar libros                 ║\n");
+        printf("║    3. Prestar un libro               ║\n");
+        printf("║    4. Modificar un libro             ║\n");
+        printf("║    5. Buscar un libro por isbn       ║\n");
+        printf("║    6. Salir                          ║\n");
+        printf("╚══════════════════════════════════════╝\n");
         scanf("%d", &option);
 
         switch (option)
@@ -182,10 +242,10 @@ void showMenu(Book b[], int *size)
             lendBook(b, *size);
             break;
         case 4:
-            // updateBook();
+            updateBook(b, *size);
             break;
         case 5:
-            // searchBook();
+            searchBook(b, *size);
             break;
         }
     } while (option != 6);
