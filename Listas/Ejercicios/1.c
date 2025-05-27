@@ -71,7 +71,7 @@ void mostrarLista(Nodo *cabeza)
     printf("Fin\n");
 }
 
-void mostrarMayores100(Nodo *cabeza)
+void mostrarMayoresA100(Nodo *cabeza)
 {
     Nodo *actual = cabeza;
     if (actual == NULL)
@@ -99,5 +99,5 @@ int main()
 
     mostrarLista(lista);
     printf("Mayores de 100 en la lista:\n");
-    mostrarMayores100(lista);
+    mostrarMayoresA100(lista);
 }
