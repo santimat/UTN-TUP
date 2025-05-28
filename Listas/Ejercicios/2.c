@@ -1,101 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Nodo
+typedef struct Node
 {
     int nums;
-    struct Nodo *sig;
-} Nodo;
+    Node *sig;
+} Node;
 
-Nodo *crearNodo(int valor)
+Node *createNode(int value)
 {
-    Nodo *nuevoNodo = (Nodo *)malloc(sizeof(Nodo));
+    // Reservo espacio de memoria para el nuevo nodo
+    Node *newNode = (Node *)malloc(sizeof(Node));
 
-    if (nuevoNodo == NULL)
+    if (newNode == NULL)
     {
-        printf("Error: no se pudo asignar la memoria correctamente");
+        printf("Error: no se pudo asignar memoria para el nodo\n");
         exit(1);
     }
 
-    nuevoNodo->nums = valor;
-    nuevoNodo->sig = NULL;
+    newNode->nums = value;
+    newNode->sig = NULL;
+
+    return newNode;
 }
 
-void insertarAlFinal(Nodo **cabeza, int valor)
+void insertLast(Node **head, int value)
 {
-    Nodo *nuevoNodo = crearNodo(valor);
+    Node *newNode = createNode(value);
 
-    if (*cabeza == NULL)
+    // si no hay elementos en la lista
+    if (*head == NULL)
     {
-        *cabeza = nuevoNodo;
-        return;
+        // añadimos al primero
+        *head = newNode;
     }
 
-    // Buscar ultimo nodo
-    Nodo *temp = *cabeza;
-    while (temp->sig != NULL)
+    // en caso de que haya elementos en la lista buscamos el ultimo
+    Node *temp = *head;
+    while (temp != NULL)
     {
+        // temp va a almacenar el puntero hacia el ultimo elemento de la lista
         temp = temp->sig;
     }
 
-    temp->sig = nuevoNodo;
-}
-
-Nodo *listaImpares(Nodo *cabeza)
-{
-    Nodo *actual = cabeza;
-    Nodo *lista2 = NULL;
-
-    while (actual != NULL && actual->nums % 2 != 0)
-    {
-        insertarAlFinal(&lista2, actual->nums);
-        actual = actual->sig;
-    }
-    return lista2;
-}
-
-void mostrarLista(Nodo *cabeza)
-{
-    Nodo *actual = cabeza;
-    if (actual == NULL)
-    {
-        printf("La lista esta vacia\n");
-        return;
-    }
-
-    while (actual != NULL)
-    {
-        printf("%d -> ", actual->nums);
-        actual = actual->sig;
-    }
-    printf("Fin\n");
+    // insertar al final el nuevo nodo
+    temp->sig = newNode;
 }
 
 int main()
 {
-    Nodo *lista = NULL;
-    insertarAlFinal(&lista, 3);
-    insertarAlFinal(&lista, 8);
-    insertarAlFinal(&lista, 15);
-    insertarAlFinal(&lista, 22);
-    insertarAlFinal(&lista, 7);
-    insertarAlFinal(&lista, 14);
-    insertarAlFinal(&lista, 9);
-    insertarAlFinal(&lista, 2);
-    insertarAlFinal(&lista, 11);
-    insertarAlFinal(&lista, 18);
-    insertarAlFinal(&lista, 5);
-    insertarAlFinal(&lista, 12);
-    insertarAlFinal(&lista, 17);
-    insertarAlFinal(&lista, 20);
-    insertarAlFinal(&lista, 1);
-    insertarAlFinal(&lista, 6);
-    insertarAlFinal(&lista, 13);
-    insertarAlFinal(&lista, 4);
-    insertarAlFinal(&lista, 19);
-    insertarAlFinal(&lista, 10);
-
-    Nodo *lista2 = listaImpares(lista);
-    mostrarLista(lista2);
+    Node *list = NULL;
     return 0;
 }
