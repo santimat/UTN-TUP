@@ -3,23 +3,20 @@
 
 void showTotalPerBranch(int sales[3][4])
 {
-    int total[3];
+    int total[3] = {0, 0, 0};
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 4; j++)
         {
             total[i] += sales[i][j];
         }
+        printf("Total sucursal nro#%d: $%d\n", i + 1, total[i]);
     }
-
-    printf("La primer sucursal vendió un total de: %d\n", total[0]);
-    printf("La segunda sucursal vendió un total de: %d\n", total[1]);
-    printf("La tercer sucursal vendió un total de: %d\n", total[2]);
 }
 
 void showTotalPerMonth(int sales[3][4])
 {
-    int total[4];
+    int total[4] = {0, 0, 0, 0};
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 4; j++)
@@ -27,33 +24,51 @@ void showTotalPerMonth(int sales[3][4])
             total[j] += sales[i][j];
         }
     }
-    printf("El primer mes se vendio un total de: %d\n", total[0]);
-    printf("El segundo mes se vendio un total de: %d\n", total[1]);
-    printf("El tercer mes se vendio un total de: %d\n", total[2]);
-    printf("El cuarto mes se vendio un total de: %d\n", total[3]);
+
+    for (int e = 0; e < 4; e++)
+    {
+        printf("Total del mes #%d: $%d\n", e + 1, total[e]);
+    }
 }
+
 void showMaxSalesBranch(int sales[3][4])
 {
-    int total[3];
+    int totalPerBranch[3] = {0, 0, 0};
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 4; j++)
         {
-            total[i] += sales[i][j];
+            totalPerBranch[i] += sales[i][j];
         }
     }
-    if (total[0] > total[1] && total[0] > total[2])
+
+    int max = -1;
+    int maxSalesBranchIdx = -1;
+    for (int i = 0; i < 3; i++)
     {
-        printf("La primer sucursal es la que mas vendio\n");
+        if (totalPerBranch[i] > max)
+        {
+            max = totalPerBranch[i];
+            maxSalesBranchIdx = i;
+        }
     }
-    else if (total[1] > total[2] && total[1] > total[0])
+
+    printf("La sucursal numero #%d fue la que más vendió, con un total de %d", maxSalesBranchIdx + 1, max);
+}
+
+void showAverageSales(int sales[3][4])
+{
+    int total = 0;
+    for (int i = 0; i < 3; i++)
     {
-        printf("La segundo sucursal es la que mas vendio\n");
+        for (int j = 0; j < 4; j++)
+        {
+            total += sales[i][j];
+        }
     }
-    else
-    {
-        printf("La tercer sucursal es la que mas vendio\n");
-    }
+    float average = (float)total / 12;
+
+    printf("El promedio total de ventas es de  %.2f", average);
 }
 
 int main()
@@ -64,5 +79,9 @@ int main()
         {1000, 1400, 1250, 1350},
         {900, 1200, 1150, 1400}};
 
+    showTotalPerBranch(sales);
+    showTotalPerMonth(sales);
+    showMaxSalesBranch(sales);
+    showAverageSales(sales);
     return 0;
 }
