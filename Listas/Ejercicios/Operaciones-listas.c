@@ -100,6 +100,7 @@ int eliminar(Nodo **cabeza, int valor)
 
         // La cabeza pasa a ser el siguiente del que eliminamos
         *cabeza = (*cabeza)->sig;
+
         free(temp); // <- limpiamos el espacio de memoria donde estaba el que queremos eliminar
         return 1;
     }
