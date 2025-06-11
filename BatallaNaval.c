@@ -2,15 +2,35 @@
 #include <stdlib.h>
 #include <time.h>
 
-void imprimirMatriz(char tablero[][6])
+void imprimirMatriz(char tablero[][6], int opt)
 {
-    for (int i = 0; i < 6; i++)
+    if (opt == 1)
     {
-        for (int j = 0; j < 6; j++)
+
+        for (int i = 0; i < 6; i++)
         {
-            printf("%c ", tablero[i][j]);
+            for (int j = 0; j < 6; j++)
+            {
+                printf("%c ", tablero[i][j]);
+            }
+            printf("\n");
         }
-        printf("\n");
+    }
+    else
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+
+                if (tablero[i][j] == 'B')
+                {
+                    printf("-");
+                }
+                printf("%c ", tablero[i][j]);
+            }
+            printf("\n");
+        }
     }
 }
 
@@ -33,9 +53,9 @@ int initBarcos(char tablero[6][6])
         int fila = rand() % 6;
         int columna = rand() % 6;
 
-        if (tablero[fila][columna] != 'b')
+        if (tablero[fila][columna] != 'B')
         {
-            tablero[fila][columna] = 'b';
+            tablero[fila][columna] = 'B';
             cont++;
         }
 
@@ -44,10 +64,16 @@ int initBarcos(char tablero[6][6])
 
 int verificarCoordenadas(char tablero[][6], int coords[])
 {
-    if (tablero[coords[0] - 1][coords[1] - 1] == 'b')
+    int disparo = tablero[coords[0] - 1][coords[1] - 1];
+    if (disparo == 'B')
     {
         return 1;
     }
+    else if (disparo = '-')
+    {
+        return 2;
+    }
+
     return 0;
 }
 
@@ -62,7 +88,7 @@ int verificarTablero(char tablero[][6])
     {
         for (int j = 0; j < 6; j++)
         {
-            if (tablero[i][j] == 'b')
+            if (tablero[i][j] == 'B')
             {
                 return 1;
             }
@@ -77,6 +103,7 @@ void colocarBarcos(char tableroJ[][6])
     do
     {
         int coords[2]; // pos 0 fila, pos 1 columna
+
         printf("Ingrese la fila donde desea colocar el barco\n");
         scanf("%d", &coords[0]);
 
@@ -90,51 +117,64 @@ void colocarBarcos(char tableroJ[][6])
             continue;
         }
 
-        modificarTablero(tableroJ, coords, 'b');
+        modificarTablero(tableroJ, coords, 'B');
         barcos++;
     } while (barcos != 4);
 }
 
 void dispararJugador(char tablero[][6])
 {
-    int intentos = 0;
-    do
+    int coords[2];
+    printf("Ingrese fila\n");
+    scanf("%d", &coords[0]);
+    printf("Ingrese columna\n");
+    scanf("%d", &coords[1]);
+
+    int res = verificarCoordenadas(tablero, coords);
+    if (res == 1)
     {
-        int res = verificarTablero(tablero);
-        if (res == 1)
-        {
-            printf("Haz ganado eres un gigachad! :P \n");
-            return;
-        }
-
-        int coords[2];
-        printf("Ingrese fila\n");
-        scanf("%d", &coords[0]);
-        printf("Ingrese columna\n");
-        scanf("%d", &coords[1]);
-
-        int res = verificarCoordenadas(tablero, coords);
-        if (res == 1)
-        {
-            modificarTablero(tablero, coords, 'X');
-        }
-        else
-        {
-            modificarTablero(tablero, coords, 'O');
-        }
-        intentos++;
-    } while (intentos < 4);
+        printf("Acertaste\n");
+        modificarTablero(tablero, coords, 'X');
+    }
+    else if (res == 2)
+    {
+        printf("AGUA\n");
+        modificarTablero(tablero, coords, 'O');
+    }
+    else
+    {
+        printf("Ya haz dado en esa posicion\n");
+    }
 }
 
-void disparoMaquinola(char tablero[][6])
+void disparoMaquina(char tablero[][6])
 {
     int coords[] = {rand() % 6, rand() % 6};
     int res = verificarCoordenadas(tablero, coords);
     if (res == 1)
     {
         printf("La maquina a acertado\n");
-        modificarTablero(tablero, coords, 'x');
+        modificarTablero(tablero, coords, 'X');
     }
+    else if (res == 2)
+    {
+        printf("La maquina a fallado\n");
+        modificarTablero(tablero, coords, 'O');
+    }
+}
+
+void iniciarJuego(char tableroJ[][6], char tableroM[][6])
+{
+    do
+    {
+        int coords[2];
+        printf("Turno del jugador\n");
+        printf("Fila: \n");
+        scanf("%d", &coords[0]);
+        printf("Columna: \n");
+        scanf("%d", &coords[1]);
+
+    } while ();
 }
 
 int main()
@@ -146,7 +186,6 @@ int main()
 
     // tablero de la maquina
     initMatriz(tableroM);
-    imprimirMatriz(tableroM);
     initBarcos(tableroM);
 
     // tablero del jugador
