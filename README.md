@@ -4,7 +4,12 @@
 
 -   Lenguaje C.
     -   Variables.
-    -   Funciones (Declaracion y llamado).
+    -   Estructura de datos. (if-else, switch)
+    -   Bucles.(while, for)
+    -   Funciones. (Declaracion y llamada)
     -   Operadores arimeticos y logicos.
-    -   Declaracion de tipos de datos.
-    -
+    -   Declaracion de tipos de datos. (int, float, char, etc)
+    -   Punteros.
+    -   Estructuras. (arrays, structs)
+    -   Listas enlazadas.
+    -   Algoritmos de ordenamiento y de busqueda. (Bubble Sort, Selection Sort, Insertion Sort, Binary search)
