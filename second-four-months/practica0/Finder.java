@@ -8,8 +8,7 @@ public class Finder {
     public static int[] findNumber(int target){
         for(int i = 0; i < numbers.length; i++){
             if (numbers[i] == target) {
-                int res[] = {numbers[i], i};
-                return res;
+                return new int[]{numbers[i], i};
             }
         }
         return new int[] {-1, -1}; // Si no lo encuentra
