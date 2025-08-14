@@ -1,27 +1,33 @@
 package practica0;
+// Como importar paquetes locales
+// package university.model; archivo en ruta "university/model"
 
-public class Main {
-    
+// Import es para importar clases
+import java.util.Scanner;
+// import java.util.*; <- importamos todas las clases del package
+public class Main{
     public static void main(String[] args) {
+        // Creamos un scanner para leer datos de la consola
+        // System.in es de inputStream
+        Scanner scanner = new Scanner(System.in);
 
-        // ------------ Student excercise ------------
-        // Student newStudent = new Student();   
-        // newStudent.getInfo();
-        // newStudent.showInfo();
+        System.out.println("Ingrese un texto");
+        // next.Line(), es para leer una linea completa
+        String text = scanner.nextLine();
+        System.out.println(text);
 
-        // ------------ Calculator ------------
-        // Calculator.getNumbers();
-        // Calculator.showResults();
+        // next.Int(), es para leer un int
+        int age = scanner.nextInt();
+        System.out.println(age);
 
-        // ------------ Finder ------------
-        // Finder.fillArray();
-        // int res[] = Finder.findNumber(3);
+        // next.double(), leer un numero decimal
+        double measure = scanner.nextDouble();
+        System.out.println(measure);
 
-        // if (res[0] != -1) {
-        //     System.out.println("El numero " + res[0] + " se encuentra en la posicion " + res[1]);
-        // }else{
-        //     System.out.println("Numero no encontrado");
-        // }
+        // Cerrar scanner
+        scanner.close();
+
+        // final, es para crear constantes
+        final int MAX_ALUMNOS = 30; // No se puede reescribir
     }
-    
 }
