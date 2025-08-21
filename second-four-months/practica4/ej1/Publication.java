@@ -23,7 +23,13 @@ public class Publication {
     }
 
     public void showInfo(){
-        System.out.println("title: " + this.title + "\nyear: " + this.year + "\n status: " + this.available);
+        String text = "Title: " + this.getTitle() + "\nYear: " + this.getYear() + "\nStatus: ";
+        if (this.getAvailable()) {
+            text += "Available";
+        }else{
+            text += "Lended";
+        }
+        System.out.print(text);
     }
 
     public String getTitle(){

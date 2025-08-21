@@ -11,7 +11,8 @@ public class Magazine extends Publication {
     }
 
     public void showInfo(){
-        System.out.println("Title: " + this.getTitle() + "\nYear: " + this.getYear() + "\nNumber: " + this.number + "\nMonth: " + this.month);
+        super.showInfo();
+        System.out.println("\nNumber: " + this.number + "\nMonth: " + this.month);
     }
 
     public int getNumber(){

@@ -11,13 +11,8 @@ public class Book extends Publication {
     }
 
     public void showInfo(){
-        String text = "Title: " + this.getTitle() + "\nYear: " + this.getYear() + "\nAuthor: " + this.author + "\nPages: " +this.pages + "\nStatus: ";
-        if (this.getAvailable()) {
-            text += "Available";
-        }else{
-            text += "Lended";
-        }
-        System.out.println(text);
+        super.showInfo();
+        System.out.println("\nAuthor: " + this.author + "\nPages: " + this.pages);
     }
 
     public String getAuthor(){

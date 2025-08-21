@@ -8,11 +8,10 @@ public class Main{
         Magazine magazine = new Magazine("National Geographic", 2024, 2, "September");
 
         book1.showInfo();
-        System.out.println("\n");
+        System.out.println();
         book2.showInfo();
-        System.out.println("\n");
+        System.out.println();
         magazine.showInfo();
-        System.out.println("\n");
 
 
         book2.lend();
@@ -20,6 +19,7 @@ public class Main{
         if(!book2.lend()){
             System.out.println("Book lended");
         }
+        System.out.println();
         book2.showInfo();
 
         book2.returnn();
