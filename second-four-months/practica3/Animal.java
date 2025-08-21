@@ -49,7 +49,7 @@ public class Animal {
     public String emitSound(){
         return "generic sound";
     }
-
+    // Sobreescribo toString() heredado del object
     @Override
     public String toString() {
         return "Animal{\nname: " +this.name+ ",\nage: "+ this.age+",\nspecie: " +this.specie+",\n}";
