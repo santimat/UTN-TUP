@@ -20,7 +20,7 @@ public class Animal {
 
     public void setName(String name) {
         if (name.isEmpty() || name == null) {
-            this.name = "an generic name";
+            this.name = "a generic name";
             return;
         }
         this.name = name;
