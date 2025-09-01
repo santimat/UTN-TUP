@@ -20,7 +20,7 @@ public class Main {
             videojuego.setGenero(scanner.nextLine());
 
             videojuegos.add(videojuego);
-        }
+        }                           
 
         // Mostramos videojuegos con for each
         // creamos variable temporal llamada videojuego e iteramos dentro del array videojuegos
@@ -32,52 +32,69 @@ public class Main {
             System.out.println();
             i++;
         }
-        boolean flag = false;
-        System.out.println("Ingrese el nombre del juego que desea buscar: ");
-        String nombreJuego = scanner.nextLine();
-        for (Videojuego videojuego : videojuegos) {
-            // Obtenemos el nombre del videojuego y comparamos que si es igual al nombre del usuario ignorando mayusculas y minusculas
-            if (videojuego.getNombre().equalsIgnoreCase(nombreJuego)) {
-                System.out.println(videojuego);
-                flag = true;
-                break;
+
+        // Eliminar juegos de x genero
+        // Al eliminar más de un videojuego es importante hacerlo con un bucle inverso, sino se rompen los indices
+        // size - 1 porque .size() retorna el largo del array y los indices comienzan en 0
+        for(i = videojuegos.size() - 1; i >= 0 ; i--){
+            if (videojuegos.get(i).getGenero().equals("deporte")) {
+                videojuegos.remove(i);
             }
         }
-        if(!flag){
-            System.out.println("Videojuego "+ nombreJuego +" no encontrado");
+
+        for (int j = 0; j < videojuegos.size(); j++) {
+            System.out.println("Juego nro: " + (j + 1));
+            System.out.println("Nombre: " + videojuegos.get(j).getNombre());
+            System.out.println("Genero: " + videojuegos.get(j).getGenero());
+            System.out.println();
         }
+
+        // boolean flag = false;
+        // System.out.println("Ingrese el nombre del juego que desea buscar: ");
+        // String nombreJuego = scanner.nextLine();
+        // for (Videojuego videojuego : videojuegos) {
+        //     // Obtenemos el nombre del videojuego y comparamos que si es igual al nombre del usuario ignorando mayusculas y minusculas
+        //     if (videojuego.getNombre().equalsIgnoreCase(nombreJuego)) {
+        //         System.out.println(videojuego);
+        //         flag = true;
+        //         break;
+        //     }
+        // }
+        // if(!flag){
+        //     System.out.println("Videojuego "+ nombreJuego +" no encontrado");
+        // }
 
         // Juegos en total
-        System.out.println(videojuegos.size());
+        // System.out.println(videojuegos.size());
 
-        System.out.println("Ingrese el nombre del videojuego que desea eliminar");
-        nombreJuego = scanner.nextLine();
-        flag = false;
-        for(i = 0; i < videojuegos.size(); i++){
-            // get(indice) es para obtener elemento del array
-            if (videojuegos.get(i).getNombre().equalsIgnoreCase(nombreJuego)) {
-                // .remove() retorna el elemento eliminado
-                System.out.println("Video juego eliminado: " + videojuegos.remove(i).getNombre());
-                flag = true;
-                break;
-            }
-        }
-        if(!flag){
-            System.out.println("no se puedo eliminar el videojuego: " + nombreJuego);
-        }
+        // System.out.println("Ingrese el nombre del videojuego que desea eliminar");
+        // nombreJuego = scanner.nextLine();
+        // flag = false;
+        // for(i = 0; i < videojuegos.size(); i++){
+        //     // get(indice) es para obtener elemento del array
+        //     if (videojuegos.get(i).getNombre().equalsIgnoreCase(nombreJuego)) {
+        //         // .remove() retorna el elemento eliminado
+        //         System.out.println("Video juego eliminado: " + videojuegos.remove(i).getNombre());
+        //         flag = true;
+                
+        //     }
+        // }
+        // if(!flag){
+        //     System.out.println("no se pudo eliminar el videojuego: " + nombreJuego);
+        // }
 
-        System.out.println("Ingrese el genero a mostrar");
-        String genero = scanner.nextLine();
-        flag= false;
-        for (Videojuego videojuego : videojuegos) {
-            if (videojuego.getGenero().equalsIgnoreCase(genero)) {
-                System.out.println(videojuego);
-                flag= true;
-            }
-        }
-        if (!flag) {
-            System.out.println("No hay ningun juego con ese genero");
-        }
+        // System.out.println("Ingrese el genero a mostrar");
+        // String genero = scanner.nextLine();
+        // flag= false;
+        // for (Videojuego videojuego : videojuegos) {
+        //     if (videojuego.getGenero().equalsIgnoreCase(genero)) {
+        //         System.out.println(videojuego);
+        //         flag= true;
+        //     }
+        // }
+        // if (!flag) {
+        //     System.out.println("No hay ningun juego con ese genero");
+        // }
 
         // Cerramos scanner
         scanner.close();
