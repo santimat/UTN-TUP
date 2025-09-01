@@ -18,4 +18,7 @@
 
 -   Java
     -   POO (Clases, herencias, polimorfismo, metodos de acceso, etc)
+        -   Clases abstractas
+        -   Interfaces
     -   Imports y packages
+    -   ArrayLists y sus metodos
