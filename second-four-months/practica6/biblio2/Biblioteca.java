@@ -13,9 +13,8 @@ public class Biblioteca {
         for (Libro libro : libros) {
             // si el titulo del libro es igual al titulo que recibimos por parametro
             if (libro.getTitulo().equalsIgnoreCase(titulo)) {
-                int copias = libro.getCopias();
-                if (copias > 0) {
-                    libro.setCopias(copias - 1);
+                if (libro.getCopias() > 0) {
+                    libro.setCopias(libro.getCopias() - 1);
                     System.out.println("El libro " + titulo + " fue prestado con éxito");
                     return;
                 } else {
