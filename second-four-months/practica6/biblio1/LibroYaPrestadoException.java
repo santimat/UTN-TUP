@@ -1,7 +1,9 @@
+package biblio1;
+
 // Esta execpcion es unchecked
 public class LibroYaPrestadoException extends RuntimeException {
-    
-    public LibroYaPrestadoException(String message){
+
+    public LibroYaPrestadoException(String message) {
         super(message);
     }
 

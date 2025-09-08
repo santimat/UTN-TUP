@@ -1,20 +1,22 @@
+package biblio1;
+
 import java.util.ArrayList;
 
 public class Biblioteca {
     private ArrayList<Libro> libros;
 
-    public Biblioteca(ArrayList<Libro> libros){
+    public Biblioteca(ArrayList<Libro> libros) {
         this.libros = libros;
     }
 
-    public void prestarLibro(String titulo) throws LibroNoEncontradoException{
+    public void prestarLibro(String titulo) throws LibroNoEncontradoException {
         for (Libro libro : this.libros) {
-            if(libro.getTitulo().equalsIgnoreCase(titulo)){
-                if(libro.getDisponible()){
+            if (libro.getTitulo().equalsIgnoreCase(titulo)) {
+                if (libro.getDisponible()) {
                     libro.setDisponible(false);
-                    System.out.println("Libro " + titulo+ " prestado con exito");
+                    System.out.println("Libro " + titulo + " prestado con exito");
                     return;
-                }else{
+                } else {
                     throw new LibroYaPrestadoException("El libro ya está prestado");
                 }
             }
@@ -22,14 +24,14 @@ public class Biblioteca {
         throw new LibroNoEncontradoException("El libro no fue encontrado");
     }
 
-    public void devolverLibro(String titulo) throws LibroNoEncontradoException{
+    public void devolverLibro(String titulo) throws LibroNoEncontradoException {
         for (Libro libro : this.libros) {
-            if(libro.getTitulo().equalsIgnoreCase(titulo)){
-                if(!libro.getDisponible()){
+            if (libro.getTitulo().equalsIgnoreCase(titulo)) {
+                if (!libro.getDisponible()) {
                     libro.setDisponible(true);
-                    System.out.println("Libro " + titulo+ " devuelto con exito");
+                    System.out.println("Libro " + titulo + " devuelto con exito");
                     return;
-                }else{
+                } else {
                     throw new LibroYaPrestadoException("El libro ya fue devuelto");
                 }
             }
