@@ -14,6 +14,7 @@ public class Main {
 
         // Creamos la biblioteca
         Biblioteca biblioteca = new Biblioteca(libros);
+        biblioteca.mostrarInventario();
 
     }
 }

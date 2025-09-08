@@ -42,4 +42,11 @@ public class Biblioteca {
         throw new LibroNoEncontradoException("El libro " + titulo + " no pudo ser encontrado");
     }
 
+    public void mostrarInventario() {
+        for (Libro libro : libros) {
+            System.out.println(libro.getTitulo() + " - " + libro.getAutor() + " - " + "(copias disponibles: "
+                    + libro.getCopias() + ")");
+        }
+    }
+
 }
