@@ -10,10 +10,11 @@ public class Agenda {
     if (nombre.isEmpty()) {
       throw new AgendaException("El nombre no puede estar vacío.");
     }
-    if (telefono.length() >= 7) {
+    if (telefono.length() < 7) {
       throw new AgendaException("El numero de telefono debe contener al menos 7 caracteres.");
     }
     agenda.put(nombre.toLowerCase().trim(), telefono.toLowerCase());
+    System.out.println(Helpers.capitalize(nombre) + " agendado correctamente");
   }
 
   public static String buscarTelefono(String nombre) throws AgendaException {
@@ -27,7 +28,7 @@ public class Agenda {
     if (agenda.remove(nombre.toLowerCase().trim()) == null) {
       throw new AgendaException("El contacto que desea eliminar no existe.");
     }
-    System.out.println("Contacto: " + nombre + " eliminado correctamente.");
+    System.out.println("Contacto: " + Helpers.capitalize(nombre) + " eliminado correctamente.");
   }
 
   public static void mostrarContactos() throws AgendaException {
@@ -35,8 +36,7 @@ public class Agenda {
       throw new AgendaException("La agenda está vacía");
     }
     for (String key : agenda.keySet()) {
-      System.out.println(key + ": " + agenda.get(key));
+      System.out.println("- " + Helpers.capitalize(key) + ": " + agenda.get(key));
     }
   }
-
 }

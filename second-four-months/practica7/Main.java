@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
   public static void main(String[] arg) {
     Scanner scanner = new Scanner(System.in);
+
     boolean exit = true;
     do {
       System.out.println("1: Agregar un contacto");
