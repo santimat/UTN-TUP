@@ -1,9 +1,12 @@
 
 public class Helpers {
   public static String capitalize(String name) {
+    // Separamos las palabras en elementos de un array
     String[] nombreSpliteado = name.split(" ");
 
+    // instanciamos el stringBuilder
     StringBuilder sb = new StringBuilder("");
+
     for (int i = 0; i < nombreSpliteado.length; i++) {
       if (!nombreSpliteado[i].trim().isEmpty()) {
         // tomo la primer letra y la paso a mayuscula
@@ -16,7 +19,6 @@ public class Helpers {
         }
       }
     }
-
     // convierto el StringBuilder a string y lo retorno
     return sb.toString().trim();
   }

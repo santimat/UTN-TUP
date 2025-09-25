@@ -1,0 +1,8 @@
+Manzana
+Pera
+Banana
+Piña
+Huevo
+Queso
+Pollo
+Arroz

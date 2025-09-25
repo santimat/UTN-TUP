@@ -1,0 +1,12 @@
+Resumen
+Total de productos 8
+1. Manzana
+2. Pera
+3. Banana
+4. Piña
+5. Huevo
+6. Queso
+7. Pollo
+8. Arroz
+Primer producto: Manzana
+Ultimo productoo: Arroz
