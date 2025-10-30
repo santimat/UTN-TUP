@@ -6,7 +6,10 @@ public class Main {
   public static void main(String[] args) {
     GestorArchivos ga = new GestorArchivos("./archivos/lista_personas.csv");
     Scanner scanner = new Scanner(System.in);
-    int opcion = 4;
+    int opcion = 0;
+    String[] meses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
+        "Octubre",
+        "Noviembre", "Diciembre" };
     do {
       System.out.println("====== SISTEMA CUMPLES ======");
       System.out.println("1. Agregar nueva persona");
@@ -21,9 +24,9 @@ public class Main {
         case 1:
           System.out.print("Ingrese nombre: ");
           String nombre = scanner.nextLine();
-          System.out.println("Ingrese apellido: ");
+          System.out.print("Ingrese apellido: ");
           String apellido = scanner.nextLine();
-          System.out.println("Ingrese fecha de nacimiento formato YYYY-MM-DD");
+          System.out.print("Ingrese fecha de nacimiento formato YYYY-MM-DD");
           try {
             LocalDate fecha = LocalDate.parse(scanner.nextLine());
             ga.agregarPersona(new Person(nombre, apellido, fecha));
@@ -35,7 +38,7 @@ public class Main {
           List<Person> personas = ga.leerPersonas();
           if (personas.isEmpty()) {
             System.out.println("Aun no hay personas registradas");
-            return;
+            break;
           }
           System.out.println("Personas en CSV");
           for (Person person : personas) {
@@ -43,7 +46,7 @@ public class Main {
           }
           break;
         case 3:
-          System.out.print("Ingrese un mes del 1-12");
+          System.out.print("Ingrese un mes del 1-12: ");
           int mes = scanner.nextInt();
           scanner.nextLine();
           List<Person> personasPorMes = ga.leerPersonas();
@@ -66,7 +69,7 @@ public class Main {
           }
 
           if (!hayCumples) {
-            System.out.println("Nadie cumple añitos en " + mes);
+            System.out.println("Nadie cumple añitos en " + meses[mes - 1]);
           }
           break;
         default:
